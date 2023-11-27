@@ -27,6 +27,12 @@ app.get('/news', (req, res) => {
   return res.render('news'); 
 });
 
+
+app.get('/search', (req, res) => {
+  //console.log(req.query.q);
+  return res.render('search');
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
