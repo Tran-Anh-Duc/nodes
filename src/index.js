@@ -7,6 +7,8 @@ const { log } = require('console');
 const app = express();
 const port = 3000;
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(morgan('combined'));
 
 // Cấu hình handlebars làm template engine
