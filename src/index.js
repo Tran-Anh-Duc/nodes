@@ -7,9 +7,21 @@ const { log } = require('console');
 const app = express();
 const port = 3000;
 
+
+const route = require('./routes');
+
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(morgan('combined'));
+app.use(express.urlencoded({
+  extended:true
+}));
+
+app.use(express.json());
+
+
+//app.use(morgan('combined'));
 
 // Cấu hình handlebars làm template engine
 app.engine('hbs',handlebars({
@@ -17,10 +29,16 @@ app.engine('hbs',handlebars({
 }));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources/views'));
+route(app);
+
+
 
 app.get('/', (req, res) => {
   return res.render('home');
 });
+
+
+
 
 
 app.get('/news', (req, res) => {
@@ -31,6 +49,11 @@ app.get('/news', (req, res) => {
 app.get('/search', (req, res) => {
   //console.log(req.query.q);
   return res.render('search');
+});
+
+app.post('/search', (req, res) => {
+  console.log(req.body);
+  return res.send('');
 });
 
 app.listen(port, () => {
