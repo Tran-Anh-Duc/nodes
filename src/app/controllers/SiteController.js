@@ -22,7 +22,6 @@ class SiteController{
      .catch(err => {
          res.status(400).json({ error: 'ERROR' });
      });  
-
         //res.render('home');
      }   
 
