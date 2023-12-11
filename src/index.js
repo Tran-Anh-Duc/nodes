@@ -6,11 +6,13 @@ const { log } = require('console');
 
 const app = express();
 const port = 3000;
-
+const db = require('./config/db');
 
 const route = require('./routes');
 
+//db connect
 
+db.connect();
 
 app.use(express.static(path.join(__dirname, 'public')));
 
